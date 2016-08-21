@@ -21,7 +21,8 @@
 			height: 300,
 			showDots: false,
 			animation: 'slide',
-			images: []
+			images: [],
+			path: "slider-images/"
 		}, options);
 
 		if(settings.showDots) {
@@ -44,6 +45,7 @@
 
 $(document).ready(function() {
 	$('body').cypSlider({
-		showDots: true
+		showDots: true,
+		images: ["test1.jpg","test2.jpg","test3.jpg","test4.jpg"]
 	});
 });
