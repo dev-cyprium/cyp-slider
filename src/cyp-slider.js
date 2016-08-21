@@ -73,15 +73,20 @@ var ButtonFactory = (function(){
 		$container.append(prev);
 		$container.append(next);
 
+		// Add 'dots' to the screen, if the settings are configured to show them
 		if(settings.showDots) {
 			addDots(settings.images.length);
 		}
 
-
+		// Append the first image to the slider
 		$container.append($images[0]);
 
 	}
 
+	/*
+		Handles the click of both buttons and
+		calls the appropriate callback function
+	*/
 	function clickHandler( callback ) {
 		var prevIndex = imageIndex;
 
@@ -94,6 +99,10 @@ var ButtonFactory = (function(){
 
 	}
 
+	/*
+		Moves the image index forward;
+		renders the image to the screen with animation
+	*/
 	function nextImage() {
 		imageIndex++
 		if(imageIndex > imageCount - 1) {
@@ -101,6 +110,10 @@ var ButtonFactory = (function(){
 		}
 	}
 
+	/*
+		Moves the image index backward;
+		renders the image to the screen with animation
+	*/
 	function previousImage() {
 		imageIndex--;
 		if(imageIndex < 0) {
@@ -109,6 +122,10 @@ var ButtonFactory = (function(){
 
 	}
 
+	/*
+		Creates the required <img> tags
+		that will store the image data
+	*/
 	function cacheImages() {
 		$images = [];
 		for(var i=0; i<settings.images.length; i++) {
@@ -120,6 +137,9 @@ var ButtonFactory = (function(){
 		}
 	}
 
+	/*
+		Caches the canvas for displaying images
+	*/
 	function cacheDom() {
 		$container = $("#cyp-gallery");
 		if($container.length === 0) {
@@ -128,6 +148,11 @@ var ButtonFactory = (function(){
 		return true;
 	}
 
+
+	/*
+		Adds the GUI dots
+		at the bottom of the slider
+	*/
 	function addDots( number ) {
 		var dotContainer = $("<div>", {class: 'cyp-dot-container'});
 		for(var i=0; i < number; i++) {
