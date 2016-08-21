@@ -10,7 +10,7 @@
 
 	// Instance variables
 	var $container;
-
+	var $images;
 
 	/*
 		Plugin entry point and init function.
@@ -31,6 +31,20 @@
 			images: [],
 			path: "slider-images/"
 		}, options);
+
+		// Crash the plugin if not enough images are given.
+		if(settings.images.length < 2) {
+			console.error("Error: You've provided less than 2 images.")
+			return;
+		}
+
+		$images = [];
+		// Create and cache the image elements
+		for(var i=0; i<settings.images.length; i++) {
+			$images.push($("<img>", {
+				src: settings.path + settings.images[i]
+			}));
+		}
 
 		if(settings.showDots) {
 			addDots(settings.images.length);
@@ -62,6 +76,6 @@
 $(document).ready(function() {
 	$('body').cypSlider({
 		showDots: true,
-		images: ["test1.jpg","test2.jpg","test3.jpg","test4.jpg"]
+		images: ["test-1.jpg","test-2.jpg","test-3.jpg","test-4.jpg"]
 	});
 });
