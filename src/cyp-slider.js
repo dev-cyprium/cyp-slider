@@ -11,10 +11,17 @@
 	// Instance variables
 	var $container;
 
+
 	/*
 		Plugin entry point and init function.
 	*/
 	$.fn.cypSlider = function( options ) {
+		// Cache the DOM element containg the image gallery.
+		if(!cacheDom()) {
+			console.error("Error: Object with id of 'cyp-gallery' wasn't found, did you forget to add it?");
+			return;
+		}
+
 		// Use the default options params for options that are not passed in.
 		var settings = $.extend({
 			width: 600,
@@ -28,6 +35,15 @@
 		if(settings.showDots) {
 			addDots(settings.images.length);
 		}
+
+	}
+
+	function cacheDom() {
+		$container = $("#cyp-gallery");
+		if($container.length === 0) {
+			return false;
+		}
+		return true;
 	}
 
 	function addDots( number ) {
