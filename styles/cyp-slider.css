@@ -5,13 +5,13 @@
 .cyp-btn-left {
 	position: absolute;
 	bottom: 0;
-	left: 0;
+	left: 10px;
 }
 
 .cyp-btn-right {
 	position: absolute;
 	bottom: 0;
-	right: 0;
+	right: 10px;
 }
 
 .cyp-dot {
@@ -19,6 +19,18 @@
 	display: inline-block;
 	width: 10px;
 	height: 10px;
-	background-color: gray;
+	background-color: #fafafa;
 	border-radius: 100%;
+	transition: all ease 1.0s;
+}
+
+.cyp-dot-container {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+}
+
+.cyp-dot.active {
+	background-color: gray;
 }

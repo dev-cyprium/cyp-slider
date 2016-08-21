@@ -23,8 +23,10 @@ var ButtonFactory = (function(){
 	var $container;
 	var $images;
 	var $dotcontainer;
+	var $dots;
 	var imageIndex;
-
+	var imageCount;
+	var settings;
 	/*
 		Plugin entry point and init function.
 	*/
@@ -36,36 +38,38 @@ var ButtonFactory = (function(){
 		}
 
 		// Use the default options params for options that are not passed in.
-		var settings = $.extend({
+		settings = $.extend({
 			width: 600,
 			height: 300,
 			showDots: false,
-			animation: 'slide',
 			images: [],
 			path: "slider-images/"
 		}, options);
+		imageIndex = 0;
+		$dots = [];
+		imageCount = options.images.length;
 
 		// Set the container to the given width and height
 		$container.css({width: settings.width, height: settings.height});
 
 		// Stop the plugin if not enough images are given.
-		if(settings.images.length < 2) {
+		if(imageCount < 2) {
 			console.error("Error: You've provided less than 2 images.")
 			return;
 		}
 
 		// Create and cache the image elements
-		cacheImages( settings );
+		cacheImages();
 		
 		// Create the next/previous buttons
 		var prev = ButtonFactory.createButton("Prev", "cyp-btn-left");	
 		var next = ButtonFactory.createButton("Next", "cyp-btn-right");
 		
 		// Bind events to buttons
-		prev.click(previousImage);
-		next.click(nextImage);
-		imageIndex = 0;
+		prev.click(function() { clickHandler( previousImage ) });
+		next.click(function() { clickHandler( nextImage ) });
 
+		// Append the buttons to the screen
 		$container.append(prev);
 		$container.append(next);
 
@@ -78,15 +82,34 @@ var ButtonFactory = (function(){
 
 	}
 
+	function clickHandler( callback ) {
+		var prevIndex = imageIndex;
+
+		callback();
+
+		if(settings.showDots === true) {
+			$dots[prevIndex].removeClass('active');
+			$dots[imageIndex].addClass('active'); 
+		}
+
+	}
+
 	function nextImage() {
-		alert('next image');
+		imageIndex++
+		if(imageIndex > imageCount - 1) {
+			imageIndex = 0;
+		}
 	}
 
 	function previousImage() {
-		alert('previous image');
+		imageIndex--;
+		if(imageIndex < 0) {
+			imageIndex = imageCount - 1;
+		}
+
 	}
 
-	function cacheImages( settings ) {
+	function cacheImages() {
 		$images = [];
 		for(var i=0; i<settings.images.length; i++) {
 			$images.push($("<img>", {
@@ -106,10 +129,14 @@ var ButtonFactory = (function(){
 	}
 
 	function addDots( number ) {
+		var dotContainer = $("<div>", {class: 'cyp-dot-container'});
 		for(var i=0; i < number; i++) {
 			var dot = $("<span>", {class: 'cyp-dot'});
-			$container.append(dot);
+			dotContainer.append(dot);
+			$dots.push(dot);
 		}
+		$container.append(dotContainer);
+		$dots[0].addClass('active');
 	}
 
 
@@ -118,7 +145,6 @@ var ButtonFactory = (function(){
 /*
 	Debug / Test code
 */
-
 $(document).ready(function() {
 	$('body').cypSlider({
 		showDots: true,
