@@ -2,16 +2,20 @@
 <html>
 <head>
 	<title>Test - image slider</title>
+	<!-- CSS link for the plugin (place before custom styles)-->
+	<link rel="stylesheet" type="text/css" href="styles/cyp-slider.css">
 	<style type="text/css">
-		section {
-			width: 70%;
-			margin: auto;
-		}
 		h1 {
 			text-align: center;
 			border-bottom: 1px solid black;
 		}
+
+		#cyp-gallery {
+			margin: auto;
+		}
 	</style>
+
+	
 </head>
 <body>
 <h1>Image slider preview</h1>
@@ -19,6 +23,8 @@
  <div id="cyp-gallery"></div>
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+ 
+<!-- SRC link for the plugin -->
  <script src="src/cyp-slider.js"></script>
 </section>
 </body>

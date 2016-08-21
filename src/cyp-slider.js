@@ -1,8 +1,9 @@
 var ButtonFactory = (function(){
 	var self = {};
 
-	self.createButton = function( name ) {
-		return $("<button>").append(name).addClass("cyp-button");
+	self.createButton = function( name, btnClass ) {
+		var button = $("<button>").append(name).addClass(btnClass); 
+		return button;
 	}
 
 	return self;
@@ -42,6 +43,9 @@ var ButtonFactory = (function(){
 			path: "slider-images/"
 		}, options);
 
+		// Set the container to the given width and height
+		$container.css({width: settings.width, height: settings.height});
+
 		// Stop the plugin if not enough images are given.
 		if(settings.images.length < 2) {
 			console.error("Error: You've provided less than 2 images.")
@@ -52,12 +56,26 @@ var ButtonFactory = (function(){
 		cacheImages( settings );
 		
 		// Create the next/previous buttons
-		$container.append(ButtonFactory.createButton("Next"));
-		$container.append(ButtonFactory.createButton("Prev"))
+		var prev = ButtonFactory.createButton("Prev", "cyp-btn-left");	
+		var next = ButtonFactory.createButton("Next", "cyp-btn-right");
+		
+		// Bind events to buttons
+		prev.click(function() {
+			alert('clicked');
+		});
+
+		next.click(function() {
+			alert('clicked');
+		});
+		$container.append(prev);
+		$container.append(next);
 
 		if(settings.showDots) {
 			addDots(settings.images.length);
 		}
+
+
+		$container.append($images[0]);
 
 	}
 
