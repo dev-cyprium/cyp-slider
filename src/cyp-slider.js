@@ -22,6 +22,7 @@ var ButtonFactory = (function(){
 	// Instance variables
 	var $container;
 	var $images;
+	var $dot-container;
 
 	/*
 		Plugin entry point and init function.
@@ -108,7 +109,8 @@ var ButtonFactory = (function(){
 
 	function addDots( number ) {
 		for(var i=0; i < number; i++) {
-
+			var dot = $("<span>", {class: 'cyp-dot'});
+			$container.append(dot);
 		}
 	}
 
