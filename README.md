@@ -4,5 +4,10 @@ cyp-slider is a simple and open soruce jQuery plugin for creating image gallerie
 
 Requirements:
  - jQuery
- - Image element with the class of `cyp-gallery`
+
+
+ # Usage/Tutorial
+## Tutorial
+
+## Examples
 

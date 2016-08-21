@@ -31,9 +31,11 @@ var ButtonFactory = (function(){
 		Plugin entry point and init function.
 	*/
 	$.fn.cypSlider = function( options ) {
-		// Cache the DOM element containg the image gallery.
-		if(!cacheDom()) {
-			console.error("Error: Object with id of 'cyp-gallery' wasn't found, did you forget to add it?");
+		// Sets the container to the image-frame
+		$container = this;
+		
+		if(this.attr('id') !== 'cyp-gallery') {
+			console.error("Error: This function must be bound to a #cyp-gallery type container.");
 			return;
 		}
 
@@ -171,7 +173,7 @@ var ButtonFactory = (function(){
 	Debug / Test code
 */
 $(document).ready(function() {
-	$('body').cypSlider({
+	$('#cyp-gallery').cypSlider({
 		showDots: true,
 		images: ["test-1.jpg","test-2.jpg","test-3.jpg","test-4.jpg"]
 	});
