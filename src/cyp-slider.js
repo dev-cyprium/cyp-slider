@@ -1,3 +1,13 @@
+var ButtonFactory = (function(){
+	var self = {};
+
+	self.createButton = function( name ) {
+		return $("<button>").append(name).addClass("cyp-button");
+	}
+
+	return self;
+})();
+
 (function($) {
 	/*
 		Error to check is jQuery loaded.
@@ -32,24 +42,42 @@
 			path: "slider-images/"
 		}, options);
 
-		// Crash the plugin if not enough images are given.
+		// Stop the plugin if not enough images are given.
 		if(settings.images.length < 2) {
 			console.error("Error: You've provided less than 2 images.")
 			return;
 		}
 
-		$images = [];
 		// Create and cache the image elements
-		for(var i=0; i<settings.images.length; i++) {
-			$images.push($("<img>", {
-				src: settings.path + settings.images[i]
-			}));
-		}
+		cacheImages( settings );
+		
+		// Create the next/previous buttons
+		$container.append(ButtonFactory.createButton("Next"));
+		$container.append(ButtonFactory.createButton("Prev"))
 
 		if(settings.showDots) {
 			addDots(settings.images.length);
 		}
 
+	}
+
+	function nextImage() {
+
+	}
+
+	function previousImage() {
+
+	}
+
+	function cacheImages( settings ) {
+		$images = [];
+		for(var i=0; i<settings.images.length; i++) {
+			$images.push($("<img>", {
+				src: settings.path + settings.images[i],
+				width: settings.width,
+				height: settings.height
+			}));
+		}
 	}
 
 	function cacheDom() {

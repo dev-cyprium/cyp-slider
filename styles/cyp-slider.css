@@ -1,0 +1,9 @@
+#cyp-gallery {
+	position: relative;
+}
+
+.cyp-button {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
