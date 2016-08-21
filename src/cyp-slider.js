@@ -22,7 +22,8 @@ var ButtonFactory = (function(){
 	// Instance variables
 	var $container;
 	var $images;
-	var $dot-container;
+	var $dotcontainer;
+	var imageIndex;
 
 	/*
 		Plugin entry point and init function.
@@ -61,13 +62,10 @@ var ButtonFactory = (function(){
 		var next = ButtonFactory.createButton("Next", "cyp-btn-right");
 		
 		// Bind events to buttons
-		prev.click(function() {
-			alert('clicked');
-		});
+		prev.click(previousImage);
+		next.click(nextImage);
+		imageIndex = 0;
 
-		next.click(function() {
-			alert('clicked');
-		});
 		$container.append(prev);
 		$container.append(next);
 
@@ -81,11 +79,11 @@ var ButtonFactory = (function(){
 	}
 
 	function nextImage() {
-
+		alert('next image');
 	}
 
 	function previousImage() {
-
+		alert('previous image');
 	}
 
 	function cacheImages( settings ) {

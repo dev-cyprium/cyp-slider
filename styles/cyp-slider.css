@@ -15,8 +15,10 @@
 }
 
 .cyp-dot {
+	margin: 5px;
 	display: inline-block;
 	width: 10px;
 	height: 10px;
 	background-color: gray;
+	border-radius: 100%;
 }
