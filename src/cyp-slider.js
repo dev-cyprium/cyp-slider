@@ -8,6 +8,8 @@
 		return;
 	}
 
+	// Instance variables
+	var $container;
 
 	/*
 		Plugin entry point and init function.
@@ -22,8 +24,26 @@
 			images: []
 		}, options);
 
-		
+		if(settings.showDots) {
+			addDots(settings.images.length);
+		}
+	}
+
+	function addDots( number ) {
+		for(var i=0; i < number; i++) {
+
+		}
 	}
 
 
 })( (typeof(jQuery) !== 'undefined' ? jQuery : undefined) );
+
+/*
+	Debug / Test code
+*/
+
+$(document).ready(function() {
+	$('body').cypSlider({
+		showDots: true
+	});
+});
