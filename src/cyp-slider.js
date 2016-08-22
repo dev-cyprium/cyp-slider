@@ -75,7 +75,11 @@ var ButtonFactory = (function(){
 		// Bind events to buttons and dots
 		prev.click(function() { clickHandler( previousImage ) });
 		next.click(function() { clickHandler( nextImage ) });
-		for(var i=0; i < imageCount; i++) { $dots[i].click(function() { alert('clicked'); }) }
+		for(var i=0; i < imageCount; i++) { 
+			$dots[i].click(function() {
+				dotClick.call(this);
+			}); 
+		}
 		// Append the buttons to the screen
 		$container.append(prev);
 		$container.append(next);
@@ -99,6 +103,18 @@ var ButtonFactory = (function(){
 			$dots[imageIndex].addClass('active'); 
 		}
 
+	}
+
+	/*
+		Handles the dot controlls
+		Move image to the image index when dot is clicked
+	*/
+
+	function dotClick() {
+		// Remove the active from the active dot
+		// FIXME: Keep track of active dot to simplify iteration and save processor time
+		for(var i=0; i < imageCount; i++) { $dots[i].removeClass('active'); }
+		$container.find(this).addClass('active');
 	}
 
 	/*

@@ -6,8 +6,5 @@ Requirements:
  - jQuery
 
 
- # Usage/Tutorial
-## Tutorial
-
-## Examples
+# Usage/Tutorial
 
