@@ -67,18 +67,18 @@ var ButtonFactory = (function(){
 		var prev = ButtonFactory.createButton("Prev", "cyp-btn-left");	
 		var next = ButtonFactory.createButton("Next", "cyp-btn-right");
 		
-		// Bind events to buttons
-		prev.click(function() { clickHandler( previousImage ) });
-		next.click(function() { clickHandler( nextImage ) });
-
-		// Append the buttons to the screen
-		$container.append(prev);
-		$container.append(next);
-
 		// Add 'dots' to the screen, if the settings are configured to show them
 		if(settings.showDots) {
 			addDots(settings.images.length);
 		}
+
+		// Bind events to buttons and dots
+		prev.click(function() { clickHandler( previousImage ) });
+		next.click(function() { clickHandler( nextImage ) });
+		for(var i=0; i < imageCount; i++) { $dots[i].click(function() { alert('clicked'); }) }
+		// Append the buttons to the screen
+		$container.append(prev);
+		$container.append(next);
 
 		// Append the first image to the slider
 		$container.append($images[0]);
